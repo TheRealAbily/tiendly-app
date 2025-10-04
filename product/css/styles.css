@@ -1,0 +1,299 @@
+/* Styles for product container */
+#container {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: start;
+    align-items: center;
+
+    flex-direction: column;
+
+    box-sizing: border-box;
+}
+
+/* Product container */
+.product-container {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: start;
+    align-items: center;
+
+    flex: 1;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    aspect-ratio: 1 / 1;
+
+    /* Shop section */
+    & .shops-container {
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Main product container */
+    & section.image-container {
+        margin: 1rem auto 2rem;
+
+        height: calc(100% - 2rem);
+
+        max-height: 30rem;
+
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        flex-shrink: 0;
+        
+        box-sizing: border-box;
+
+        overflow: visible;
+
+        aspect-ratio: 1 / 1;
+
+        /* Container */
+        & > div {
+            padding: 1rem;
+
+            width: 100%;
+            height: 100%;
+
+            background: linear-gradient(var(--gray-tone-4), var(--gray-tone-5));
+
+            border: 0.1rem solid var(--gray-tone-6);
+            border-radius: var(--border-radius);
+
+            display: flex;
+
+            justify-content: start;
+            align-items: center;
+
+            flex: 1;
+
+            flex-direction: column;
+
+            box-sizing: border-box;
+            box-shadow: var(--box-shadow);
+
+            overflow: hidden;
+
+            /* Image */
+            & img {
+                width: 100%;
+                height: 100%;
+                
+                border-radius: var(--border-radius);
+
+                display: flex;
+
+                justify-content: center;
+                align-items: center;
+
+                box-sizing: border-box;
+            }
+        }
+    }
+
+    /* Buttons container */
+    .buttons-container {
+        margin-bottom: 1.5rem;
+
+        width: 100%;
+
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        gap: 2.5rem;
+
+        box-sizing: border-box;
+    }
+
+    /* Lines */
+    span.separator-0 { margin: 0.5rem 0rem; }
+    span.separator-1 { margin-bottom: 1.5rem; }
+    span.separator-2 {
+        margin-top: 3.5rem;
+        margin-bottom: 1.5rem;
+        
+        /* Margin */
+        &.short-description {
+            margin-top: 0rem;
+        }
+    }
+
+    /* Description container */
+    .description-container {
+        width: 100%;
+
+        position: relative;
+
+        display: flex;
+
+        justify-content: start;
+        align-items: center;
+
+        flex-direction: column;
+
+        box-sizing: border-box;
+
+        /* Text container */
+        & div {
+            padding: 0rem 2rem;
+
+            width: 100%;
+
+            max-height: 6.25rem;
+
+            position: relative;
+
+            box-sizing: border-box;
+
+            overflow: hidden;
+            
+            transition: max-height 0.5s ease-in-out;
+
+            /* Animation */
+            &.container-open { animation: container-open 0.5s ease-in-out forwards; }
+
+            &.container-close { animation: container-close 0.5s ease-in-out forwards; }
+
+            /* Text */
+            & p {
+                margin-bottom: 2.5rem;
+                
+                width: 100%;
+
+                color: var(--text-color-3);
+
+                display: flex;
+
+                justify-content: start;
+                align-items: start;
+
+                box-sizing: border-box;
+
+                font-size: 1.3rem;
+
+                line-height: 2rem;
+
+                text-align: justify;
+                text-indent: 2.5rem;
+        
+                /* Margin */
+                &.short-description {
+                    margin-bottom: 1.5rem;
+                }
+            }
+
+            /* Gradient */
+            & span {
+                width: 100%;
+                height: 5rem;
+
+                background: linear-gradient(transparent, transparent 55%, var(--bg-color-3) 75%, var(--bg-color-3) 105%);
+
+                position: absolute;
+
+                left: 0rem;
+                bottom: 0.25rem;
+
+                /* Animation */
+                &.gradient-fade-in { animation: gradient-fade-in 0.5s ease-in-out forwards; }
+
+                &.gradient-fade-out { animation: gradient-fade-out 0.5s ease-in-out forwards; }
+            }
+        }
+
+        /* Button */
+        button.mini {
+            width: 3.75rem;
+            height: 3.75rem;
+
+            position: absolute;
+
+            bottom: 0rem;
+            left: 50%;
+
+            translate: rotate 0.5s ease-in-out;
+
+            transform: translate(-50%, 50%);
+
+            /* Animation */
+            &.entry-mini-button { animation: entry-mini-button 0.5s ease-in-out forwards; }
+
+            /* Icon */
+            & i {
+                transform: rotate(-90deg);
+
+                /* Animation */
+                &.icon-in { animation: rotate-y-in 0.5s ease-in-out forwards; }
+
+                &.icon-out { animation: rotate-y-out 0.5s ease-in-out forwards; }
+            }
+        }
+    }
+}
+
+/* Animation */
+@keyframes description-open {
+    0% { height: 5rem; }
+
+    100% { height: 100%; }
+}
+
+/* Entry mini button */
+@keyframes entry-mini-button {
+    0% {
+        transform: translate(-50%, calc(50% + 5rem));
+
+        opacity: 0;
+    }
+
+    85% {
+        transform: translate(-50%, calc(50% + -0.5rem));
+    }
+
+    100% {
+        transform: translate(-50%, 50%);
+
+        opacity: 1;
+    }
+}
+
+/* Container animations */
+@keyframes container-open {
+    0% { max-height: 6.25rem; }
+    100% { max-height: var(--product-description-max-height); }
+}
+
+@keyframes container-close {
+    0% { max-height: var(--product-description-max-height); }
+    100% { max-height: 6.25rem; }
+}
+
+/* Gradient animations */
+@keyframes gradient-fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes gradient-fade-out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Icon animations */
+@keyframes rotate-y-in {
+    0% { transform: rotate(-90deg) rotateY(0deg); }
+    100% { transform: rotate(-90deg) rotateY(180deg); }
+}
+
+@keyframes rotate-y-out {
+    0% { transform: rotate(-90deg) rotateY(180deg); }
+    100% { transform: rotate(-90deg) rotateY(0deg); }
+}

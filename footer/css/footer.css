@@ -1,0 +1,255 @@
+/* Styles for the footer */
+footer {
+    --footer-mark-position-start: 0rem;
+    --footer-mark-position-end: 0rem;
+
+    width: 100%;
+    height: 5.5rem;
+
+    background: var(--color-2);
+
+    position: relative;
+    
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    box-shadow: var(--box-shadow-t);
+
+    overflow: visible;
+
+    z-index: 200;
+
+    /* Extra line */
+    &::after {
+        content: '';
+
+        width: 100%;
+        height: 3rem;
+
+        background: var(--color-2);
+
+        position: absolute;
+
+        bottom: -2.8rem;
+        left: 0rem;
+
+        z-index: 210;
+    }
+
+    /* Animation */
+    &.fade-in { animation: footer-fade-in 0.5s var(--cubic-bezier) forwards; }
+
+    &.fade-out { animation: footer-fade-out 0.5s var(--cubic-bezier-inverted) forwards; }
+
+    /* Middle container */
+    & #middle-container-footer,
+    & #bottom-container-footer {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        box-sizing: border-box;
+
+        /* Bottom container */
+        & #bottom-container-footer {
+            position: relative;
+
+            /* Mark */
+            & .mark {
+                width: 33%;
+                height: 100%;
+
+                background: linear-gradient(#fff 0rem, #fff 0.25rem, rgba(255, 255, 255, 0.15) 0.25rem, rgba(255, 255, 255, 0.15) 50%, transparent);
+
+                position: absolute;
+
+                top: 0rem;
+                left: 0rem;
+
+                z-index: 210;
+
+                transition: width 0.2s ease-in-out;
+
+                /* Animation */
+                &.animate { animation: footer-move-mark var(--footer-animation-speed) ease-in-out forwards; }
+
+                /* Adjust one pixel */
+                &.adjust-pixel { width: calc(33% + 0.25rem); }
+            }
+
+            /* Icons container */
+            & ul {
+                width: 100%;
+                height: 100%;
+
+                display: flex;
+
+                justify-content: center;
+                align-content: center;
+
+                box-sizing: border-box;
+
+                list-style: none;
+
+                overflow: hidden;
+
+                /* Single icon container */
+                & li {
+                    padding: 0.5rem 0rem;
+
+                    background: var(--color-2);
+
+                    height: 100%;
+
+                    display: flex;
+
+                    justify-content: end;
+                    align-items: center;
+
+                    flex-direction: column;
+
+                    flex: 1;
+
+                    box-sizing: border-box;
+
+                    transition: filter 0.15s ease-in-out;
+
+                    /* Hover effect */
+                    &:hover {
+                        cursor: pointer;
+
+                        filter: brightness(105%);
+                    }
+
+                    /* Icon container (yes, one more) */
+                    & div {
+                        width: 100%;
+
+                        display: flex;
+
+                        justify-content: center;
+                        align-items: center;
+
+                        flex: 1;
+
+                        box-sizing: border-box;
+
+                        pointer-events: none;
+
+                        /* Icon (At last) */
+                        & i {
+                            height: 75%;
+
+                            background: var(--color-4);
+
+                            aspect-ratio: 1 / 1;
+
+                            transition: background var(--footer-animation-speed) ease-in-out;
+
+                            /* Figure */
+                            &.dashboard { mask-image: url('../../resources/icons/house.svg'); }
+
+                            /* Figure */
+                            &.carts { mask-image: url('../../resources/icons/cart.svg'); }
+
+                            /* Figure */
+                            &.user { mask-image: url('../../resources/icons/person.svg'); }
+                        }
+                    }
+
+                    /* Text */
+                    & h6 {
+                        width: 100%;
+
+                        color: var(--color-4);
+                        
+                        font-size: 1.1rem;
+                        font-weight: bold;
+
+                        text-align: center;
+
+                        letter-spacing: 0.05rem;
+
+                        pointer-events: none;
+
+                        transition: color var(--footer-animation-speed) ease-in-out;
+                    }
+
+                    /* Selected effect */
+                    &.selected {
+                        /* Icon */
+                        & i {
+                            background: #fff;
+
+                            /* Figure */
+                            &.dashboard { mask-image: url('../../resources/icons/house-fill.svg'); }
+
+                            /* Figure */
+                            &.carts { mask-image: url('../../resources/icons/cart-fill.svg'); }
+
+                            /* Figure */
+                            &.user { mask-image: url('../../resources/icons/person-fill.svg'); }
+                        }
+
+                        /* Text */
+                        & h6 { color: #fff; }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Footer mark animation */
+@keyframes footer-move-mark {
+    0% { left: var(--footer-mark-position-start); }
+    100% { left: var(--footer-mark-position-end); }
+}
+
+/* Footer move animation */
+@keyframes footer-fade-in {
+    0% {
+        opacity: 0;
+
+        transform: translateY(10rem);
+    }
+
+    75% {
+        opacity: 1;
+        
+        transform: translateY(-0.5rem);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform: translateY(0rem);
+    }
+}
+
+@keyframes footer-fade-out {
+    0% {
+        opacity: 1;
+
+        transform: translateY(0rem);
+    }
+
+    25% {
+        opacity: 1;
+        
+        transform: translateY(-0.5rem);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform: translateY(10rem);
+    }
+}

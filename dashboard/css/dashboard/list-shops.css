@@ -1,0 +1,95 @@
+/* Styles for shop container */
+ul.shops-container li > div {
+    transition: filter 0.15s ease-in-out;
+
+    /* Hover effect */
+    &:hover {
+        filter: brightness(95%);
+    }
+    
+    /* Image container */
+    & > div {
+        width: 100%;
+        height: 45%;
+
+        background: var(--gray-tone-5);
+
+        border: 0.1rem solid var(--gray-tone-6);
+        border-radius: var(--border-radius);
+
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        flex: 1;
+
+        box-sizing: border-box;
+
+        overflow: hidden;
+    }
+
+    /* Image */
+    & img {
+        height: 100%;
+
+        object-fit: contain;
+    }
+
+    /* Name */
+    & h5 {
+        --height-shop-name: 1.5rem;
+
+        margin: 0.5rem 0rem 0.1rem;
+
+        width: 100%;
+        height: calc(var(--height-shop-name) * 2);
+
+        min-height: calc(var(--height-shop-name) * 2);
+
+        color: var(--color-6);
+
+        display: -webkit-box;
+        
+        font-size: 1.15rem;
+        font-weight: bold;
+        
+        text-align: left;
+        
+        overflow: hidden;
+        
+        line-height: var(--height-shop-name);
+        
+        -webkit-box-orient: vertical;
+        
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+    }
+
+    /* Name */
+    & h4 {
+        --height-recent-product-name: 1.5rem;
+
+        margin: 0.75rem 0rem 0.1rem;
+
+        width: 100%;
+        height: var(--height-recent-product-name);
+
+        min-height: var(--height-recent-product-name);
+
+        color: var(--color-6);
+
+        font-size: 1.15rem;
+        font-weight: bold;
+        
+        text-align: left;
+
+        line-height: var(--height-recent-product-name);
+
+        white-space: nowrap;
+        
+        text-overflow: ellipsis;
+
+        overflow: hidden;
+    }
+}

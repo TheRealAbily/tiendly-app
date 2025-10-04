@@ -1,0 +1,216 @@
+/* Variable of styles */
+:root {
+    /* Background */
+    --bg-color-1: #00B4D8;
+    --bg-color-2: #0077B6;
+    --bg-color-3: #f3f5f8;
+
+    /* Colors */
+    --color-1: #03045E;
+    --color-2: #0077B6;
+    --color-3: #00B4D8;
+    --color-4: #90E0EF;
+    --color-5: #CAF0F8;
+    --color-6: #1f5a9c;
+
+    /* Button */
+    --button-color-1: #00B4D8;
+    --button-color-2: #0077B6;
+
+    /* Form */
+    --form-color-1: #fff;
+
+    /* Error */
+    --error-color: #f00;
+    --error-move: 0.25rem;
+
+    /* Success */
+    --success-color: #0f0;
+
+    /* Lines password colors */
+    --line-password-color-1: #c20000;
+    --line-password-color-2: #f74848;
+    --line-password-color-3: #f7c848;
+    --line-password-color-4: #6bf748;
+    --line-password-color-5: #488ef7;
+
+    /* Gray tones */
+    --gray-tone-1: hsl(0, 0%, 65%);
+    --gray-tone-2: hsl(0, 0%, 45%);
+    --gray-tone-3: hsl(0, 0%, 85%);
+    --gray-tone-4: hsl(0, 0%, 97.5%);
+    --gray-tone-5: hsl(0, 0%, 85%);
+    --gray-tone-6: hsl(0, 0%, 75%);
+    --gray-tone-7: hsl(0, 0%, 100%);
+    --gray-tone-8: hsl(0, 0%, 80%);
+    --gray-tone-9: hsl(0, 0%, 92.5%);
+
+    /* Passsword line */
+    --line-color-1: hsl(0, 0%, 45%);
+    --line-color-2: hsl(0, 0%, 85%);
+
+    /* Input color */
+    --input-color-1: hsl(0, 0%, 100%);
+    --input-color-2: #1f5a9c;
+    --input-color-3: #fff;
+    --input-color-4: rgba(255, 255, 255, 0.8);
+    --input-color-5: rgba(255, 255, 255, 0.25);
+
+    /* Elements color */
+    --element-ui-color-1: hsl(0, 0%, 60%);
+    --element-ui-color-2: rgba(0, 0, 0, 0.075);
+
+    /* Effects */
+    --border-radius: 0.5rem;
+
+    --box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+    --text-shadow: 0.15rem 0.15rem 0.15rem rgba(0, 0, 0, 0.25);
+    --box-shadow-c: 0rem 0rem 0.25rem rgba(0, 0, 0, 0.25);
+    --box-shadow-t: -0.25rem -0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+
+    --cubic-bezier: cubic-bezier(0.25, 1.25, 1, 1);
+    --cubic-bezier-inverted: cubic-bezier(0.75, -0.5, 1, 0.75);
+    
+    /* Text colors */
+    --text-color-1: hsl(0, 0%, 40%);
+    --text-color-2: #0077B6;
+    --text-color-3: #000;
+    --text-color-4: #000;
+    --text-color-5: #1f5a9c;
+
+    /* General vars */
+    --general-round: 0.5rem;
+
+    /* Header */
+    --header-height: 5rem;
+
+    /* Main */
+    --main-animation-speed: 0.3s;
+
+    /* Footer */
+    --footer-animation-speed: 0.3s;
+
+    /* UI colors */
+    --red: #ff3d3d;
+    --green: #6bf748;
+    --green-2: #43af28;
+
+    /* Dashboard */
+    --dashboard-categories-min-width: 7.5rem;
+    --dashboard-products-min-width: 12rem;
+    --dashboard-ads-min-width: 35rem;
+
+    --dashboard-margin-width: 1rem;
+
+    /* Product */
+    --product-description-max-height: 10rem;
+
+    /* Shop */
+    --shop-top-distance: 0rem;
+
+    /* ---------------------------------------------------------------------- */
+
+    /* Original colors (white-theme) */
+
+    /* Background */
+    --ocwt-bg-color-1: #00B4D8;
+    --ocwt-bg-color-2: #0077B6;
+    --ocwt-bg-color-3: #f3f5f8;
+
+    /* Colors */
+    --ocwt-color-1: #03045E;
+    --ocwt-color-2: #0077B6;
+    --ocwt-color-3: #00B4D8;
+    --ocwt-color-4: #90E0EF;
+    --ocwt-color-5: #CAF0F8;
+    --ocwt-color-6: #1f5a9c;
+
+    /* Button */
+    --ocwt-button-color-1: #00B4D8;
+    --ocwt-button-color-2: #0077B6;
+
+    /* Form */
+    --ocwt-form-color-1: #fff;
+
+    /* Gray tones */
+    --ocwt-gray-tone-1: hsl(0, 0%, 65%);
+    --ocwt-gray-tone-2: hsl(0, 0%, 45%);
+    --ocwt-gray-tone-3: hsl(0, 0%, 85%);
+    --ocwt-gray-tone-4: hsl(0, 0%, 97.5%);
+    --ocwt-gray-tone-5: hsl(0, 0%, 85%);
+    --ocwt-gray-tone-6: hsl(0, 0%, 75%);
+    --ocwt-gray-tone-7: hsl(0, 0%, 100%);
+    --ocwt-gray-tone-8: hsl(0, 0%, 80%);
+    --ocwt-gray-tone-9: hsl(0, 0%, 92.5%);
+    
+    /* Text colors */
+    --ocwt-text-color-1: hsl(0, 0%, 40%);
+    --ocwt-text-color-2: #0077B6;
+    --ocwt-text-color-3: #000;
+    --ocwt-text-color-4: #000;
+    --ocwt-text-color-5: #1f5a9c;
+
+    /* Input color */
+    --ocwt-input-color-1: hsl(0, 0%, 100%);
+    --ocwt-input-color-2: #1f5a9c;
+    --ocwt-input-color-3: #fff;
+    --ocwt-input-color-4: rgba(255, 255, 255, 0.8);
+    --ocwt-input-color-5: rgba(255, 255, 255, 0.25);
+
+    /* Element color */
+    --ocwt-element-ui-color-1: hsl(0, 0%, 60%);
+    --ocwt-element-ui-color-2: rgba(0, 0, 0, 0.075);
+
+    /* ---------------------------------------------------------------------- */
+
+    /* Original colors (dark-theme) */
+
+    /* Background */
+    --ocdt-bg-color-1: hsl(190, 100%, 35%);
+    --ocdt-bg-color-2: hsl(201, 100%, 10%);
+    --ocdt-bg-color-3: #122027;
+
+    /* Colors */
+    --ocdt-color-1: #03045E;
+    --ocdt-color-2: #185474;
+    --ocdt-color-3: #000000;
+    --ocdt-color-4: #94b6c5;
+    --ocdt-color-5: #000000;
+    --ocdt-color-6: #bbd4df;
+
+    /* Button */
+    --ocdt-button-color-1: #379fb4;
+    --ocdt-button-color-2: #1d6186;
+
+    /* Form */
+    --ocdt-form-color-1: hsl(0, 0%, 30%);
+
+    /* Gray tones */
+    --ocdt-gray-tone-1: hsl(0, 0%, 0%);
+    --ocdt-gray-tone-2: hsl(0, 0%, 0%);
+    --ocdt-gray-tone-3: hsl(0, 0%, 0%);
+    --ocdt-gray-tone-4: hsl(0, 0%, 40%);
+    --ocdt-gray-tone-5: hsl(0, 0%, 20%);
+    --ocdt-gray-tone-6: hsl(0, 0%, 60%);
+    --ocdt-gray-tone-7: hsl(0, 0%, 100%);
+    --ocdt-gray-tone-8: hsl(0, 0%, 25%);
+    --ocdt-gray-tone-9: hsl(0, 0%, 42.5%);
+
+    /* Text colors */
+    --ocdt-text-color-1: hsl(0, 0%, 90%);
+    --ocdt-text-color-2: #b0d3e6;
+    --ocdt-text-color-3: #fff;
+    --ocdt-text-color-4: #fff;
+    --ocdt-text-color-5: #82b1e6;
+
+    /* Input color */
+    --ocdt-input-color-1: hsl(0, 0%, 90%);
+    --ocdt-input-color-2: hsl(200, 70%, 40%);
+    --ocdt-input-color-3: #fff;
+    --ocdt-input-color-4: rgba(255, 255, 255, 0.8);
+    --ocdt-input-color-5: rgba(255, 255, 255, 0.25);
+
+    /* Element color */
+    --ocdt-element-ui-color-1: hsl(0, 0%, 65%);
+    --ocdt-element-ui-color-2: rgba(0, 0, 0, 0.4);
+}

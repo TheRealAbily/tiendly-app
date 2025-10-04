@@ -1,0 +1,12 @@
+/* Normal font */
+@font-face {
+    font-family: 'Fredoka';
+    src: url('../../resources/fonts/fredoka.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Fredoka';
+    src: url('../../resources/fonts/fredoka-bold.ttf') format('truetype');
+    font-weight: bold;
+}

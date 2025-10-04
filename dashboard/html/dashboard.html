@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+    <html lang="es">
+        <head>
+            <!-- Title -->
+            <title>Dashboard</title>
+
+            <!-- Icon -->
+            <link rel="icon" href="../../resources/images/tiendly-icon.ico">
+
+            <!-- CSS -->
+
+            <!-- Main general -->
+            <link href="../../general/css/vars.css" rel="stylesheet">
+            <link href="../../general/css/fonts.css" rel="stylesheet">
+            <link href="../../general/css/html.css" rel="stylesheet">
+            <link href="../../general/css/styles.css" rel="stylesheet">
+            <link href="../../general/css/sub-styles.css" rel="stylesheet">
+            <link href="../../general/css/texts.css" rel="stylesheet">
+            <link href="../../general/css/list-not-found.css" rel="stylesheet">
+
+            <!-- General -->
+            <link href="../css/general/styles.css" rel="stylesheet">
+            <link href="../css/general/screen.css" rel="stylesheet">
+
+            <!-- Dashboard -->
+            <link href="../css/dashboard/list-ads.css" rel="stylesheet">
+            <link href="../css/dashboard/list-styles.css" rel="stylesheet">
+            <link href="../css/dashboard/list-categories.css" rel="stylesheet">
+            <link href="../css/dashboard/list-products.css" rel="stylesheet">
+            <link href="../css/dashboard/list-shops.css" rel="stylesheet">
+            <link href="../css/dashboard/tiendly.css" rel="stylesheet">
+
+            <!-- Queues -->
+            <link href="../css/queues/queues-container.css" rel="stylesheet">
+            <link href="../css/queues/message-container.css" rel="stylesheet">
+
+            <!-- User -->
+            <link href="../css/user/options-container.css" rel="stylesheet">
+            <link href="../css/user/theme-circle.css" rel="stylesheet">
+
+            <!-- JS -->
+
+            <!-- Main general -->
+            <script src="../../general/js/imports/header.js" type="module" prefer></script>
+            <script src="../../general/js/imports/footer.js" type="module" prefer></script>
+
+            <!-- Dashboard -->
+            <script src="../js/dashboard/insert-elements.js" type="module" prefer></script>
+
+            <!-- Queues -->
+            <script src="../js/queues/insert-elements.js" type="module" prefer></script>
+            
+            <!-- User -->
+            <script src="../js/user/about.js" type="module" prefer></script>
+            <script src="../js/user/theme.js" type="module" prefer></script>
+            <script src="../js/user/ch-password.js" type="module" prefer></script>
+            <script src="../js/user/logout.js" type="module" prefer></script>
+
+            <!-- Meta -->
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        </head>
+
+        <body>
+            <!-- Import the header -->
+            <header></header>
+
+            <!-- Dashboard -->
+            <main>
+                <!-- Dashboard -->
+                <div class="main-container" id="dashboard">
+                    <!-- Background -->
+                    <span class="background"></span>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Ads container -->
+                    <ul class="dashboard-element ads-container set-visibility" id="ads-container"></ul>
+
+                    <!-- Categories container -->
+                    <ul class="dashboard-element categories-container set-visibility" id="categories-container"></ul>
+
+                    <!-- Categories button -->
+                    <div class="dashboard-element loading-effect button-container set-visibility element-not-entry">
+                        <button class="large-button" id="show-all-categories">Ver más categorías</button>
+                    </div>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Line divisor -->
+                    <span class="dashboard-element line-separator fix set-visibility"></span>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Recent products -->
+
+                    <!-- Subtitle -->
+                    <h3 class="dashboard-element subtitle set-visibility recent-part" id="recent-container-title">Visto recientemente</h3>
+
+                    <!-- Products container -->
+                    <ul class="dashboard-element recent-container set-visibility recent-part" id="recent-container"></ul>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Based on your favorites -->
+
+                    <!-- Subtitle -->
+                    <h3 class="dashboard-element subtitle set-visibility my-favorites-part" id="my-favorites-container-title">Productos favoritos</h3>
+
+                    <!-- Categories container -->
+                    <ul class="dashboard-element my-favorites-container set-visibility my-favorites-part" id="my-favorites-container"></ul>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Popular products -->
+                    
+                    <!-- Subtitle -->
+                    <h3 class="dashboard-element subtitle set-visibility">Productos populares</h3>
+
+                    <!-- Popular products container -->
+                    <ul class="dashboard-element popular-container set-visibility" id="popular-container"></ul>
+
+                    <!-- Products button -->
+                    <div class="dashboard-element loading-effect button-container set-visibility element-not-entry">
+                        <button class="large-button" id="show-all-products">Ver más productos</button>
+                    </div>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Line divisor -->
+                    <span class="dashboard-element line-separator fix set-visibility"></span>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Shops availables -->
+                    
+                    <!-- Subtitle -->
+                    <h3 class="dashboard-element subtitle set-visibility">Tiendas disponibles</h3>
+
+                    <!-- Shops container -->
+                    <ul class="dashboard-element shops-container set-visibility" id="shops-container"></ul>
+
+                    <!-- Shops button -->
+                    <div class="dashboard-element loading-effect button-container set-visibility element-not-entry">
+                        <button class="large-button" id="show-all-shops">Ver más tiendas</button>
+                    </div>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Line divisor -->
+                    <span class="dashboard-element line-separator fix set-visibility"></span>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Ads messages -->
+
+                    <!-- Ads container -->
+                    <ul class="dashboard-element big-ads-container set-visibility" id="big-ads-container"></ul>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Line divisor -->
+                    <span class="dashboard-element line-separator fix set-visibility" id="interest-container-line"></span>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Based on your interest -->
+
+                    <!-- Subtitle -->
+                    <h3 class="dashboard-element subtitle set-visibility interest-part" id="interest-container-title">También podría interesarte</h3>
+
+                    <!-- Products container -->
+                    <ul class="dashboard-element interest-container set-visibility interest-part" id="interest-container"></ul>
+
+                    <!---------------------------------------------------------------------------->
+
+                    <!-- Screen block touchs -->
+                    <div class="screen-block-touchs desactive"></div>
+                </div>
+
+                <!-- Queues -->
+                <div class="main-container" id="queues">
+                    <!-- Background -->
+                    <span class="background"></span>
+                    
+                    <!-- Subtitle -->
+                    <h3 class="big-subtitle" id="queue-title">Colas</h3>
+                    
+                    <!-- Queues container -->
+                    <ul class="dashboard-element queues-container" id="queues-container">
+                    </ul>
+
+                    <!-- Screen block touchs -->
+                    <div class="screen-block-touchs desactive"></div>
+                </div>
+
+                <!-- Person -->
+                <div class="main-container" id="user">
+                    <!-- Background -->
+                    <span class="background"></span>
+                    
+                    <!-- Options container -->
+                    <ul class="dashboard-element options-container">
+                        <!-- Subtitle -->
+                        <h3 class="big-subtitle">Configuración</h3>
+                        
+                        <!---------------------------------------------------------------------------->
+
+                        <!-- About Tiendly -->
+                        <li id="about-button">
+                            <div class="icon">
+                                <i id="information"></i>
+                            </div>
+                            <p>Acerca de Tiendly</p>
+                        </li>
+
+                        <!-- Theme -->
+                        <li class="theme" id="theme-button">
+                            <div class="icon">
+                                <i class="light-mode" id="theme"></i>
+                            </div>
+                            <p>Tema</p>
+                        </li>
+
+                        <!-- Change password -->
+                        <li id="password-button">
+                            <div class="icon">
+                                <i id="change-password"></i>
+                            </div>
+                            <p>Cambiar contraseña</p>
+                        </li>
+                        
+                        <!---------------------------------------------------------------------------->
+
+                        <!-- Line divisor -->
+                        <span class="line-separator"></span>
+
+                        <!-- Separator container -->
+                        <span class="container-separator"></span>
+
+                        <!-- Line divisor -->
+                        <span class="line-separator"></span>
+                        
+                        <!---------------------------------------------------------------------------->
+
+                        <!-- Logout -->
+                        <li id="logout-button">
+                            <div class="icon">
+                                <i id="logout"></i>
+                            </div>
+                            <p>Cerrar sesión</p>
+                        </li>
+                    </ul>
+
+                    <!-- Screen block touchs -->
+                    <div class="screen-block-touchs desactive"></div>
+                </div>
+            </main>
+
+            <!-- Theme circle -->
+            <span class="white-theme" id="theme-circle"></span>
+
+            <!-- Footer -->
+            <footer></footer>
+
+            <!-- Modal -->
+            <div id="message-container">
+                <div id="message-box">
+                    <i></i>
+                    <h4>¿Está seguro que desea cancelar el carrito?</h4>
+                    <div>
+                        <button class="accept-cart" id="accept-delete-cart">Aceptar</button>
+                        <button class="cancel-cart" id="cancel-delete-cart">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top screen -->
+            <div id="top-screen"></div>
+        </body>
+    </html>

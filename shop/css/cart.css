@@ -1,0 +1,134 @@
+/* Styles for cart */
+.cart-container {
+    padding: 0rem 1rem;
+    
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    /* Card */
+    & .user-cart {
+        margin: 0rem 2rem 1.5rem;
+        /* margin-bottom: 1.5rem; */
+
+        padding: 1.25rem;
+
+        background: var(--input-color-2);
+        
+        width: calc(100% - 2rem);
+
+        position: sticky;
+
+        top: 0rem;
+        left: 0rem;
+
+        border-radius: var(--border-radius);
+
+        display: flex;
+
+        justify-content: start;
+        align-items: center;
+
+        flex-direction: column;
+
+        gap: 0.5rem;
+
+        box-sizing: border-box;
+        box-shadow: var(--box-shadow);
+        
+        overflow: hidden;
+
+        z-index: 275;
+
+        /* Loading effect */
+        &.loading-effect * {
+            visibility: hidden;
+
+            pointer-events: none;
+        }
+
+        /* Container */
+        & div {
+            width: 100%;
+            height: 2.25rem;
+
+            display: flex;
+
+            justify-content: start;
+            align-items: center;
+
+            box-sizing: border-box;
+
+            /* Icon */
+            & i {
+                margin-right: 0.75rem;
+
+                height: 100%;
+
+                background: #fff;
+
+                aspect-ratio: 1 / 1;
+
+                /* Cart */
+                &.cart { mask-image: url('../../resources/icons/cart-fill.svg'); }
+
+                /* Money */
+                &.money { mask-image: url('../../resources/icons/money.svg'); }
+
+                /* Bs */
+                &.bs { mask-image: url('../../resources/icons/bs.svg'); }
+
+                /* Dolar */
+                &.dolar { mask-image: url('../../resources/icons/dolar.svg'); }
+            }
+
+            /* Text */
+            & p {
+                color: #fff;
+
+                text-align: left;
+
+                font-size: 1.35rem;
+
+                /* Bold */
+                &.information {
+                    margin-right: 0.4rem;
+
+                    font-weight: bold;
+                }
+            }
+        }
+
+        /* Button */
+        & button {
+            margin-top: 1rem;
+
+            background: linear-gradient(90deg, #c3f1fa, #94d6e4);
+            background: linear-gradient(90deg, var(--gray-tone-4), var(--gray-tone-5));
+            background: linear-gradient(90deg, var(--green), var(--green-2));
+
+            color: #046d85;
+            color: var(--text-color-5);
+            color: #fff;
+
+            /* Load container */
+            & .load-container {
+                width: 100%;
+
+                display: flex;
+
+                justify-content: center;
+                align-items: center;
+
+                box-sizing: border-box;
+            }
+        }
+    }
+}

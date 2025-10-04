@@ -1,0 +1,211 @@
+/* Styles for the form */
+form {
+    padding: 2rem;
+
+    width: 80%;
+
+    min-width: 10rem;
+    min-height: 10rem;
+
+    max-width: 32rem;
+
+    background: linear-gradient(var(--gray-tone-4), var(--gray-tone-5));
+
+    border: 0.1rem solid var(--gray-tone-7);
+    border-radius: var(--border-radius);
+
+    display: flex;
+
+    justify-content: start;
+    align-items: center;
+
+    flex-direction: column;
+
+    box-sizing: border-box;
+    box-shadow: var(--box-shadow);
+
+    pointer-events: none;
+    
+    /* Animation */
+    &.fade-in { animation: form-fade-in 0.5s var(--cubic-bezier) forwards; }
+
+    &.fade-out { animation: form-fade-out 0.5s var(--cubic-bezier-inverted) forwards; }
+
+    /* Input */
+    & div.input-container {
+        margin-bottom: 2.5rem;
+    }
+
+    /* Last container */
+    & div.input-container.last {
+        margin-bottom: 1rem !important;
+    }
+
+    /* Subtitle */
+    & h2 {
+        margin-bottom: 3rem;
+
+        width: 100%;
+
+        color: var(--text-color-2);
+
+        font-family: 'fredoka';
+        font-weight: bold;
+        font-size: 2.25rem;
+
+        text-align: center;
+
+        letter-spacing: 0.065rem;
+    }
+
+    /* Error text */
+    & h6 {
+        margin-bottom: 2.5rem;
+    }
+
+    /* Back button */
+    & #back-button {
+        background: linear-gradient(90deg, var(--line-password-color-2), var(--line-password-color-1));
+    }
+
+    /* Line password */
+    & .line-password {
+        margin: 1.5rem 0rem 2.5rem;
+
+        width: 100%;
+        height: 1rem;
+
+        background: var(--line-color-2);
+
+        position: relative;
+
+        border: 0.1rem solid var(--line-color-1);
+        border-radius: 1rem;
+
+        box-sizing: border-box;
+
+        /* Divider */
+        &::before {
+            --line-height: 1rem;
+            
+            content: '';
+
+            width: 0.8rem;
+            height: calc(100% + var(--line-height));
+
+            background: var(--line-color-2);
+
+            position: absolute;
+
+            top: calc(var(--line-height) / -2);
+            left: calc(75% - 0.4rem);
+            
+            border: 0.1rem solid var(--line-color-1);
+            border-radius: 1rem;
+
+            box-sizing: border-box;
+
+            z-index: 20;
+        }
+
+        /* Line */
+        & span {
+            width: 5%;
+            height: 100%;
+
+            background: var(--line-password-color-1);
+
+            position: absolute;
+
+            top: 0rem;
+            left: 0rem;
+
+            border-radius: 1rem;
+
+            transition: width 0.25s ease-in-out, background 0.25s ease-in-out;
+
+            z-index: 10;
+
+            /* Bottom */
+            &.bottom {
+                width: 25%;
+
+                background: var(--line-password-color-2);
+            }
+
+            /* Mid */
+            &.mid {
+                width: 50%;
+
+                background: var(--line-password-color-3);
+            }
+
+            /* Top */
+            &.top {
+                width: 75%;
+
+                background: var(--line-password-color-4);
+            }
+
+            /* Full */
+            &.full {
+                width: 100%;
+
+                background: var(--line-password-color-5);
+            }
+        }
+    }
+}
+
+/* Animate */
+@keyframes form-fade-in {
+    0% {
+        opacity: 0;
+
+        transform: translateY(10rem);
+
+        pointer-events: none;
+    }
+
+    75% {
+        opacity: 1;
+        
+        transform: translateY(-1rem);
+    }
+
+    99% {
+        pointer-events: none;
+    }
+
+    100% {
+        opacity: 1;
+
+        transform: translateY(0rem);
+
+        pointer-events: all;
+    }
+}
+
+@keyframes form-fade-out {
+    0% {
+        opacity: 1;
+
+        transform: translateY(0rem);
+
+        pointer-events: none;
+    }
+
+    25% {
+        opacity: 1;
+        
+        transform: translateY(-1rem);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform: translateY(10rem);
+
+        pointer-events: none;
+    }
+}

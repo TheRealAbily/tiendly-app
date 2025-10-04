@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+    <html lang="es">
+        <head>
+            <!-- Title -->
+            <title>Producto</title>
+
+            <!-- Icon -->
+            <link rel="icon" href="../../resources/images/tiendly-icon.ico">
+
+            <!-- CSS -->
+
+            <!-- Main general -->
+            <link href="../../general/css/vars.css" rel="stylesheet">
+            <link href="../../general/css/fonts.css" rel="stylesheet">
+            <link href="../../general/css/html.css" rel="stylesheet">
+            <link href="../../general/css/styles.css" rel="stylesheet">
+            <link href="../../general/css/sub-styles.css" rel="stylesheet">
+            <link href="../../general/css/texts.css" rel="stylesheet">
+            <link href="../../general/css/screen.css" rel="stylesheet">
+            <link href="../../general/css/input-search.css" rel="stylesheet">
+            <link href="../../general/css/list-not-found.css" rel="stylesheet">
+
+            <!-- List styles from dashboard section -->
+            <link href="../../dashboard/css/dashboard/list-shops.css" rel="stylesheet">
+
+            <!-- Styles -->
+            <link href="../css/styles.css" rel="stylesheet">
+            <link href="../css/shops-container.css" rel="stylesheet">
+
+            <!-- JS -->
+
+            <!-- Main general -->
+            <script src="../../general/js/imports/header.js" type="module" prefer></script>
+
+            <!-- Script -->
+            <script src="../js/get-product.js" type="module" prefer></script>
+
+            <!-- Meta -->
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        </head>
+
+        <body>
+            <!-- Import the header -->
+            <header></header>
+
+            <!---------------------------------------------------------------------------->
+
+            <!-- Specific product -->
+            <main>
+                <div class="main-container" id="main-container">
+                    <!-- Background -->
+                    <span class="background"></span>
+
+                    <!-------------------------------------------------------------------->
+
+                    <!-- Container for all view -->
+                    <article id="general-container">
+                        <!-- Product container -->
+                        <div class="product-container">
+                            <!-- Title -->
+                            <h3 class="big-subtitle set-visibility element-entry-visible" id="product-name">. . .</h3>
+                            
+                            <!-- Subtitle -->
+                            <h3 class="subtitle set-visibility element-entry-visible" id="product-subcategory">. . .</h3>
+
+                            <!-- Image -->
+                            <section class="image-container set-visibility element-entry-visible">
+                                <div class="loading-effect" id="image-container">
+                                </div>
+                            </section>
+
+                            <!-- Buttons -->
+                            <section class="buttons-container set-visibility element-entry-visible">
+                                <button class="mini-button loading-effect" id="favorite-button"></button>
+                                <!-- <button class="mini-button loading-effect" id="share-button"></button> -->
+                                <!-- <button class="mini-button loading-effect" id="report-button"></button> -->
+                            </section>
+                            
+                            <!-- Description -->
+                            <section class="description-container set-visibility element-entry-visible">
+                                <div class="text-container">
+                                    <!-- Text -->
+                                    <p class="short-description" id="product-description">. . .</p>
+                                </div>
+                            </section>
+
+                            <!-- Line divisor -->
+                            <span class="line-separator separator-2 fix set-visibility element-entry-visible short-description"></span>
+
+                            <!-- Input search -->
+                            <div class="input-search-container set-visibility element-entry-visible loading-effect">
+                                <input class="input-search" type="text" placeholder="Buscar tienda" id="input-search" autocomplete="off">
+                                <i></i>
+                            </div>
+
+                            <!-- Shops container -->
+                            <ul id="shops-container">
+                                <li class="set-visibility element-entry-visible">
+                                    <div class="loading-effect"></div>
+                                </li>
+                                <li class="set-visibility element-entry-visible">
+                                    <div class="loading-effect"></div>
+                                </li>
+                                <li class="set-visibility element-entry-visible">
+                                    <div class="loading-effect"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <!-- Screen block touchs -->
+                    <div class="screen-block-touchs desactive"></div>
+                </div>
+            </main>
+
+            <!---------------------------------------------------------------------------->
+
+            <!-- Top screen -->
+            <div id="top-screen"></div>
+        </body>
+    </html>

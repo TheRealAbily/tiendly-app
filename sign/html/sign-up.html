@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+    <html lang="es">
+        <head>
+            <!-- Title -->
+            <title>Tiendly</title>
+
+            <!-- Icon -->
+            <link rel="icon" href="../../resources/images/tiendly-icon.ico">
+
+            <!-- CSS -->
+            <link href="../../general/css/vars.css" rel="stylesheet">
+            <link href="../../general/css/fonts.css" rel="stylesheet">
+            <link href="../../general/css/html.css" rel="stylesheet">
+            <link href="../../general/css/styles.css" rel="stylesheet">
+
+            <link href="../css/styles.css" rel="stylesheet">
+            
+            <script src="../js/register.js" type="module"  prefer></script>
+
+            <!-- Meta -->
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        </head>
+
+        <body>
+            <main class="sign-up">
+                <!-- Header -->
+                <header>
+                    <img src="../../resources/images/tiendly-icon.png" alt="Tiendly">
+                    <h1>Tiendly</h1>
+                </header>
+
+                <!-- Form -->
+                <form class="fade-in">
+                    <!-- Text -->
+                    <h2>¡Bienvenido a Tiendly!</h2>
+                    <p>Regístrarte para disfrutar de nuestra aplicación</p>
+
+                    <!-- Name -->
+                    <div class="this no-touch input-container">
+                        <input type="text" id="name" autocomplete="off">
+                        <label class="input-label">Nombres y apellidos</label>
+                    </div>
+
+                    <!-- CI -->
+                    <div class="this no-touch input-container">
+                        <input type="text" id="ci" autocomplete="off">
+                        <label class="input-label">Cédula</label>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="this no-touch input-container">
+                        <input type="email" id="email" autocomplete="off">
+                        <label class="input-label">Correo electrónico</label>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="this no-touch input-container">
+                        <input type="password" id="password" autocomplete="off">
+                        <label class="input-label">Contraseña</label>
+                        <i class="password hide"></i>
+                    </div>
+
+                    <!-- Repassword -->
+                    <div class="this no-touch input-container repassword">
+                        <input type="password" id="repassword" autocomplete="off">
+                        <label class="input-label">Repetir contraseña</label>
+                        <i class="password hide"></i>
+                    </div>
+
+                    <!-- Line password -->
+                    <div class="line-password">
+                        <span id="line"></span>
+                    </div>
+
+                    <!-- Error text -->
+                    <h6 class="error-text" id="error-text">Ha ocurrido un error en el servidor</h6>
+
+                    <!-- Button -->
+                    <button class="this no-touch disabled" type="submit" id="register-button">Registrarse</button>
+
+                    <!-- Sign up -->
+                    <div class="text-container">
+                        <h4>¿Ya tienes una cuenta?</h4>
+                        <h3 class="this no-touch" id="sign-in-text">¡Inicia sesión aquí!</h3>
+                    </div>
+                </form>
+            </main>
+        </body>
+    </html>

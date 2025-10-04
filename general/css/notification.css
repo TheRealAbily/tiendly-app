@@ -1,0 +1,288 @@
+/* Styles for notification */
+section#notification {
+    padding: 1.5rem;
+    padding-top: 0rem;
+
+    width: 100%;
+    height: 11rem;
+    
+    position: absolute;
+
+    top: 0rem;
+    left: 0rem;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    z-index: 2500000;
+
+    /* Animations */
+    &.show {
+        pointer-events: all;
+
+        opacity: 1;
+
+        /* Background */
+        & span.background { animation: background-fade-in 0.5s var(--cubic-bezier) forwards; }
+
+        /* Container */
+        & div { animation: container-fade-in 0.5s var(--cubic-bezier) forwards; }
+    }
+
+    &.hide {
+        pointer-events: all;
+
+        opacity: 1;
+
+        /* Main container */
+        & { animation: main-container-fade-out 0.5s linear forwards; }
+
+        /* Background */
+        & span.background { animation: background-fade-out 0.5s var(--cubic-bezier-inverted) forwards; }
+
+        /* Container */
+        & div { animation: container-fade-out 0.5s var(--cubic-bezier-inverted) forwards; }
+    }
+
+    /* Background */
+    & span.background {
+        width: 100%;
+        height: calc(100% + 2rem);
+
+        background: linear-gradient(rgba(0, 0, 0, 0.5) calc(75% + 2rem), transparent);
+
+        position: absolute;
+
+        top: -2rem;
+        left: 0rem;
+
+        box-sizing: border-box;
+
+        z-index: 2525000;
+    }
+
+    /* Notification container */
+    & div {
+        width: 100%;
+        height: 7rem;
+
+        border: 0.2rem solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--border-radius);
+        
+        position: relative;
+
+        display: flex;
+
+        justify-content: start;
+        align-items: center;
+
+        box-sizing: border-box;
+        box-shadow: var(--box-shadow);
+
+        overflow: hidden;
+
+        z-index: 2550000;
+
+        /* Animation */
+        &.animate {
+            /* Pattern */
+            &:before {
+                content: '';
+
+                width: 200%;
+                height: 100%;
+
+                background: rgba(0, 0, 0, 0.1);
+
+                position: absolute;
+
+                top: 0rem;
+                left: 0rem;
+
+                mask-image: repeating-linear-gradient(45deg, #000 0px, #000 1rem, transparent 1rem, transparent 2rem);
+
+                animation: moving-lines 25s linear infinite;
+            }
+        }
+
+        /* Success notification */
+        &.success {
+            background: rgb(38, 201, 119);
+
+            /* Success icon */
+            & i { mask-image: url('../../resources/icons/success.svg'); }
+        }
+
+        /* Error notification */
+        &.error {
+            background: rgb(224, 46, 46);
+
+            /* Error icon */
+            & i { mask-image: url('../../resources/icons/dangerous.svg'); }
+        }
+
+        /* Warning notification */
+        &.warning {
+            background: rgb(224, 181, 38);
+
+            /* Error icon */
+            & i { mask-image: url('../../resources/icons/warning.svg'); }
+        }
+
+        /* Left section */
+        & span:first-of-type {
+            height: 100%;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            box-sizing: border-box;
+
+            aspect-ratio: 1 / 1;
+
+            z-index: 2600000;
+
+            /* Icon */
+            & i {
+                height: 4.2rem;
+
+                background: #fff;
+            }
+        }
+
+        /* Right section */
+        & span:last-of-type {
+            padding: 1rem;
+            padding-left: 0rem;
+
+            height: 100%;
+
+            display: flex;
+
+            justify-content: start;
+            align-items: center;
+
+            flex: 1;
+
+            box-sizing: border-box;
+
+            overflow: hidden;
+
+            z-index: 2600000;
+
+            /* Text */
+            & h6#notification-text {
+                color: #fff;
+
+                display: -webkit-box;
+
+                font-weight: bold;
+                font-size: 1.4rem;
+
+                letter-spacing: 0.05rem;
+                
+                text-align: left;
+                text-overflow: ellipsis;
+
+                -webkit-box-orient: vertical;
+
+                white-space: normal;
+                
+                line-clamp: 2;
+                -webkit-line-clamp: 2;
+
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+/* Animations */
+
+/* Background */
+@keyframes background-fade-in {
+    0% {
+        opacity: 0;
+        
+        transform: translateY(-100%);
+    }
+
+    100% {
+        opacity: 0.5;
+        
+        transform: translateY(0%);
+    }
+}
+
+/* Container */
+@keyframes container-fade-in {
+    0% {
+        opacity: 0;
+        
+        transform: translateY(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        
+        transform: translateY(0%);
+    }
+}
+
+/* Main container */
+@keyframes main-container-fade-out {
+    0%, 99% { pointer-events: all; }
+
+    100% { pointer-events: none; }
+}
+
+/* Background */
+@keyframes background-fade-out {
+    0% {
+        opacity: 0.5;
+        
+        transform: translateY(0%);
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+        
+        transform: translateY(-100%);
+    }
+}
+
+/* Container */
+@keyframes container-fade-out {
+    0% {
+        opacity: 1;
+        
+        transform: translateY(0%);
+    }
+
+    100% {
+        opacity: 0;
+        
+        transform: translateY(-100%);
+    }
+}
+
+/* Lines */
+@keyframes moving-lines {
+    0% { left: 0rem; }
+
+    100% { left: -100%; }
+}

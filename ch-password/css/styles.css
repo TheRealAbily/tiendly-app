@@ -1,0 +1,42 @@
+/* Styles for dashboard */
+body {
+    padding-top: var(--header-height);
+
+    min-height: 100vh;
+
+    background: var(--bg-color-3);
+
+    display: flex;
+
+    justify-content: start;
+    align-items: center;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    /* Scroll */
+    &::-webkit-scrollbar {
+        width: 0rem;
+        height: 0rem;
+    }
+}
+
+/* Main container */
+main {
+    width: 100%;
+    
+    background: linear-gradient(var(--color-2) 0rem, var(--bg-color-3) 15rem);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    flex: 1;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}

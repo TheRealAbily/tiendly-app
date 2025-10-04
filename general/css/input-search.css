@@ -1,0 +1,112 @@
+/* Styles for input search */
+.input-search-container {
+    margin-bottom: 0.5rem;
+
+    width: calc(100% - 2rem);
+    height: 3.5rem;
+
+    position: relative;
+
+    border-radius: var(--border-radius);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    box-shadow: var(--box-shadow);
+
+    overflow: hidden;
+
+    z-index: 275;
+
+    /* Hide the childs elements */
+    &.loading-effect {
+        pointer-events: none;
+
+        /* Hide the childs */
+        & * { display: none; }
+    }
+
+    /* Input */
+    & input {
+        padding: 0rem 1rem;
+        padding-right: 3.5rem;
+
+        width: 100%;
+        height: 100%;
+
+        background: var(--input-color-2);
+        color: var(--input-color-3);
+
+        border: none;
+        border-radius: var(--border-radius);
+
+        box-sizing: border-box;
+
+        font-size: 1.3rem;
+
+        text-align: left;
+
+        /* Placeholder */
+        &::placeholder { color: var(--input-color-4); font-weight: bold; }
+
+        /* Selection */
+        &::selection { background: var(--input-color-5); }
+
+        /* Hover */
+        &:hover { cursor: pointer; }
+
+        /* Focus */
+        &:focus {
+            border: none;
+
+            outline: none;
+        }
+
+        /* Invert colors */
+        &.invert {
+            background: var(--input-color-2);
+            color: var(--input-color-3);
+
+            /* Placeholder */
+            &::placeholder { color: var(--input-color-4); font-weight: bold; }
+
+            /* Selection */
+            &::selection { background: var(--input-color-5); }
+        }
+    }
+
+    /* Icon */
+    & i {
+        --scale: 1rem;
+
+        height: calc(100% - var(--scale));
+
+        background: var(--input-color-4);
+
+        position: absolute;
+
+        top: calc(0rem + (var(--scale) / 2));
+        right: calc(0rem + (var(--scale) / 2));
+
+        aspect-ratio: 1 / 1;
+
+        mask-image: url('../../resources/icons/search.svg');
+
+        pointer-events: none;
+    }
+}
+
+/* Container for fix */
+.input-search-container-fix {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+}

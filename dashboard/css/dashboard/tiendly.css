@@ -1,0 +1,17 @@
+/* Styles for Tiendly icon */
+div.tiendly-icon {
+    width: 100%;
+
+    min-height: 2rem; 
+
+    background-color: red;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}

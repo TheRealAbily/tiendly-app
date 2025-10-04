@@ -1,0 +1,29 @@
+/* Theme circle */
+#theme-circle {
+    width: 1rem;
+
+    background: radial-gradient(circle at 50% 50%, hsl(0, 0%, 20%), hsl(0, 0%, 0%) 75%);
+
+    border-radius: 100%;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    aspect-ratio: 1 / 1;
+
+    pointer-events: none;
+
+    opacity: 0;
+    
+    z-index: 100000;
+
+    /* White theme */
+    &.white-theme { background: radial-gradient(circle at 50% 50%, hsl(0, 0%, 100%), hsl(0, 0%, 80%) 75%); }
+
+    /* Animation */
+    &.animate { animation: theme-grow 1s cubic-bezier(1, 1.5, 1, 1.25) forwards; }
+}

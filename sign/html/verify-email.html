@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+    <html lang="es">
+        <head>
+            <!-- Title -->
+            <title>Tiendly</title>
+
+            <!-- Icon -->
+            <link rel="icon" href="../../resources/images/tiendly-icon.ico">
+
+            <!-- CSS -->
+            <link href="../../general/css/vars.css" rel="stylesheet">
+            <link href="../../general/css/fonts.css" rel="stylesheet">
+            <link href="../../general/css/html.css" rel="stylesheet">
+            <link href="../../general/css/styles.css" rel="stylesheet">
+
+            <link href="../css/styles.css" rel="stylesheet">
+            <link href="../css/verify-code.css" rel="stylesheet">
+            
+            <script src="../js/verify-code.js" type="module"  prefer></script>
+
+            <!-- Meta -->
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        </head>
+
+        <body>
+            <main>
+                <!-- Header -->
+                <header>
+                    <img src="../../resources/images/tiendly-icon.png" alt="Tiendly">
+                    <h1>Tiendly</h1>
+                </header>
+
+                <!-- Form -->
+                <form class="fade-in">
+                    <!-- Text -->
+                    <h2>Verificación de correo</h2>
+                    <p>Ingresa el código que hemos enviado a tu correo</p>
+
+                    <!-- Code container -->
+                    <div class="this code-container">
+                        <div class="code-container-inset">
+                            <input class="no-touch code-input" type="text" autocomplete="off" placeholder="C">
+                            <input class="no-touch code-input" type="text" autocomplete="off" placeholder="ó">
+                            <input class="no-touch code-input" type="text" autocomplete="off" placeholder="d">
+                            <input class="no-touch code-input" type="text" autocomplete="off" placeholder="i">
+                            <input class="no-touch code-input" type="text" autocomplete="off" placeholder="g">
+                            <input class="no-touch code-input" type="text" autocomplete="off" placeholder="o">
+                            <input class="this no-touch hide" type="text" id="code" autocomplete="off">
+                            <label class="code" for="code"></label>
+                        </div>
+                    </div>
+                    
+                    <!-- Error text -->
+                    <h6 class="error-text" id="error-text">El código es incorrecto</h6>
+
+                    <!-- Button -->
+                    <button class="this no-touch disabled" type="submit" id="verify-button">Verificar</button>
+
+                    <!-- Verify code -->
+                    <div class="text-container">
+                        <h3 class="resend this no-touch" id="resend-code-text">¿No has recibido el código?</h3>
+                        <h4 class="cooldown hide"></h4>
+                    </div>
+
+                    <!-- Verify code -->
+                    <div class="text-container">
+                        <h3 class="this no-touch" id="sign-up-text">¿Has ingresado mal tu correo?</h3>
+                    </div>
+                </form>
+            </main>
+
+            <!-- Top screen -->
+            <div class="top-screen"></div>
+        </body>
+    </html>
