@@ -233,7 +233,7 @@ export function check_login({_root = '../../index.html', _exit = false}) {
 // Play any sfx:
 export function sfx(sound, volume = 1, loop = false, delay = 0) {
     // Select and load the audio:
-    const audio = new Audio(`../../../resources/sounds/${sound}`);
+    const audio = new Audio(`../../resources/sounds/${sound}`);
 
     // Check if exists:
     if (audio) {

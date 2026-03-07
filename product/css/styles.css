@@ -111,6 +111,10 @@
         gap: 2.5rem;
 
         box-sizing: border-box;
+
+        &.fixed {
+            gap: 1rem;
+        }
     }
 
     /* Lines */

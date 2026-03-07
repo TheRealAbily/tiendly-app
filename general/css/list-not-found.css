@@ -28,16 +28,16 @@ div.error-list {
         /* Icons */
         
         /* Products */
-        &.products { mask-image: url('../../../resources/icons/open-box.svg'); }
+        &.products { mask-image: url('../../resources/icons/open-box.svg'); }
         
         /* Shops */
-        &.shops { mask-image: url('../../../resources/icons/shop.svg'); }
+        &.shops { mask-image: url('../../resources/icons/shop.svg'); }
 
         /* Cart */
-        &.cart { mask-image: url('../../../resources/icons/cart.svg'); }
+        &.cart { mask-image: url('../../resources/icons/cart.svg'); }
 
         /* Queues */
-        &.queues { mask-image: url('../../../resources/icons/queues.svg'); }
+        &.queues { mask-image: url('../../resources/icons/queues.svg'); }
     }
 
     /* Text */

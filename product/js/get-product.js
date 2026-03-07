@@ -186,6 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // -----------------------------------------------------------------------
 
+            // Change the label on screen:
+            document.getElementById('label-favorites').textContent = 'Añadir a favoritos:';
+
+            // -----------------------------------------------------------------------
+
             // Variable:
             let recentProducts = [];
 

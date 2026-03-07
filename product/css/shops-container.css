@@ -238,6 +238,8 @@ ul {
 
         /* Styles for the error element on list */
         span.error-list {
+            margin-top: 2.5rem;
+
             width: 100%;
 
             display: flex;
@@ -261,7 +263,7 @@ ul {
                 
                 background: var(--element-ui-color-1);
 
-                mask-image: url('../../../resources/icons/open-box.svg');
+                mask-image: url('../../resources/icons/open-box.svg');
             }
 
             /* Text */

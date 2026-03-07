@@ -250,6 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // -----------------------------------------------------------------------
 
+            // Change the label on screen:
+            document.getElementById('label-products').textContent = 'Productos en el carrito:';
+
+            // -----------------------------------------------------------------------
+
             // Set the visibility effect:
             visibility_effect({});
 
