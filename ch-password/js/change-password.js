@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Remove the class:
             if (input_check({input: currentPasswordInput, type: 'simple-password'}) && input_check({input: passwordInput, type: 'password'}) && 
                 passwordInput.value.trim() === repasswordInput.value.trim()) {
-                apply_class({_element: 'button', _class: 'disabled', _method: 'r'});
-                apply_class({_element: 'button', _class: 'semi-disabled', _method: 'r'});
-                apply_class({_element: 'button', _class: 'no-touch', _method: 'r'});
+                apply_class({_element: button, _class: 'disabled', _method: 'r'});
+                apply_class({_element: button, _class: 'semi-disabled', _method: 'r'});
+                apply_class({_element: button, _class: 'no-touch', _method: 'r'});
             }
 
             // Hide the error message:
