@@ -63,8 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(responseApi => {
         resultFromApi = responseApi;
         const result = orderProductResponse(responseApi, 'current_price', 'asc');
-        // const result = orderProductResponse(responseApi, 'measure', 'asc');
-        // const result = orderProductResponse(responseApi, 'shop.name', 'asc');
 
         // Delay:
         setTimeout(() => {
@@ -200,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // -----------------------------------------------------------------------
 
-            // Remove the loading effect on search input:
+            // Remove the loading effect on filter input:
             apply_class({_query: '#filter-button', _class: 'loading-effect', _method: 'r'});
 
             // -----------------------------------------------------------------------
@@ -313,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // -----------------------------------------------------------------------
 
 function orderProductResponse(response, routeKey, order = 'asc') {
-    // 1. Clonamos el objeto de respuesta para no mutar el original
+    // Clonamos el objeto de respuesta
     const newResponse = { 
         ...response,
         data: {
@@ -334,7 +332,7 @@ function orderProductResponse(response, routeKey, order = 'asc') {
         return route.split('.').reduce((obj, key) => { return obj ? obj[key] : undefined; }, object);
     };
 
-    // 2. Ordenamos el array de inventarios
+    // Ordenamos el array de inventarios
     targetArray.sort((a, b) => {
         let valueA = getValueOnRoute(a, routeKey);
         let valueB = getValueOnRoute(b, routeKey);

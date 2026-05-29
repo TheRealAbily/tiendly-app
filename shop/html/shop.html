@@ -19,6 +19,7 @@
             <link href="../../general/css/screen.css" rel="stylesheet">
             <link href="../../general/css/input-search.css" rel="stylesheet">
             <link href="../../general/css/list-not-found.css" rel="stylesheet">
+            <link href="../../general/css/filter-screen.css" rel="stylesheet">
 
             <!-- List styles from dashboard section -->
             <link href="../../dashboard/css/dashboard/list-shops.css" rel="stylesheet">
@@ -106,15 +107,23 @@
                                         <button class="disabled" id="create-cart" type="button" disabled>Crear carrito</button>
                                     </div>
 
-                                    <!-- Input search -->
-                                    <div class="input-search-container set-visibility element-entry-visible loading-effect">
-                                        <input class="input-search" type="text" placeholder="Busca producto" id="input-search" autocomplete="off">
-                                        <i></i>
+                                    
+                                    <div id="search-filter-container">
+                                        <!-- Input search -->
+                                        <div class="input-search-container set-visibility element-entry-visible loading-effect">
+                                            <input class="input-search" type="text" placeholder="Buscar producto" id="input-search" autocomplete="off">
+                                            <i></i>
+                                        </div>
+
+                                        <!-- Filter button -->
+                                        <div class="set-visibility element-entry-visible loading-effect" id="filter-button">
+                                            <i></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Shops container -->
+                            <!-- Products container -->
                             <ul id="products-container">
                                 <li class="set-visibility element-entry-visible">
                                     <div class="loading-effect"></div>
@@ -133,6 +142,33 @@
                     <div class="screen-block-touchs desactive"></div>
                 </div>
             </main>
+
+            <!---------------------------------------------------------------------------->
+
+            <div id="filter-screen">
+                <div id="filters">
+                    <h3 class="big-subtitle">Filtrar por:</h3>
+                    <div id="filters-container">
+                        <span class="filter">
+                            <h3 class="big-subtitle">Precio:</h3>
+                            <div class="filter-button" id="filter-by-price"></div>
+                        </span>
+                        <span class="filter">
+                            <h3 class="big-subtitle">Nombre:</h3>
+                            <div class="filter-button marked" id="filter-by-name">
+                                <i></i>
+                            </div>
+                        </span>
+                        <span class="filter">
+                            <h3 class="big-subtitle">Medida/Unidad:</h3>
+                            <div class="filter-button" id="filter-by-measure"></div>
+                        </span>
+                    </div>
+                    <button id="filter-accept">Aceptar</button>
+                </div>
+
+                <div id="filter-pause"></div>
+            </div>
 
             <!---------------------------------------------------------------------------->
 
