@@ -457,3 +457,5 @@ ul {
         }
     }
 }
+
+.unit-product { display: none; opacity: 0; }

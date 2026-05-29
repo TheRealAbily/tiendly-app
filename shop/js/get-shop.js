@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(responseApi => {
         resultFromApi = responseApi;
         const result = orderProductResponse(responseApi, 'product.name', 'asc');
-        console.log(result);
 
         // Delay:
         setTimeout(() => {
@@ -164,13 +163,16 @@ document.addEventListener('DOMContentLoaded', () => {
             let data = newInventoryOrder;
 
             // Define the correct unit:
-            function set_unit(unit, index) {
+            function set_unit(unit, index, just_value = false) {
                 // Check if is measure:
-                if (unit === 'not_applicable') {
-                    if (parseInt(data[index]?.measure) === 1) { return `${parseInt(data[index]?.measure)} Unidad.` }
-                    else { return `${parseInt(data[index]?.measure)} Unidades.` }
+                if (!just_value) {
+                    if (unit === 'not_applicable') {
+                        if (parseInt(data[index]?.measure) === 1) { return `${parseInt(data[index]?.measure)} Unidad.` }
+                        else { return `${parseInt(data[index]?.measure)} Unidades.` }
+                    }
+                    else { return `${data[index]?.measure.toString().replace(/\./g, ',')} ${unit.charAt(0).toUpperCase() + unit.slice(1)}.`; }
                 }
-                else { return `${data[index]?.measure.toString().replace(/\./g, ',')} ${unit.charAt(0).toUpperCase() + unit.slice(1)}.`; }
+                else { return parseFloat(data[index]?.measure); }
             }
             
             // Check if exists shops that container:
@@ -235,6 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                                                     <span class="line-text">
                                                                         <h5>Unidad a la venta:</h5>
                                                                         <p>${set_unit(data[x]?.product?.unit, x)}</p>
+                                                                        <p class="unit-product">${set_unit(data[x]?.product?.unit, x, true)}</p>
                                                                     </span>
                                                                     <span class="line-text">
                                                                         <h5>Precio unitario:</h5>
@@ -304,12 +307,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         button.innerHTML = '<i></i>';
 
                         switch (index) {
-                            case 0: { orderMethod = 'By price'; } break;
-                            case 1: { orderMethod = 'By name'; } break;
-                            case 2: { orderMethod = 'By unit'; } break;
+                            case 0: { orderMethod = 'By price'; sortProductsDOM('#products-container', 'price', 'asc'); } break;
+                            case 1: { orderMethod = 'By name'; sortProductsDOM('#products-container', 'name', 'asc'); } break;
+                            case 2: { orderMethod = 'By unit'; sortProductsDOM('#products-container', 'unit', 'asc'); } break;
                         }
-
-                        newOrder();
                     }
                 })
             })
@@ -420,199 +421,43 @@ function orderProductResponse(response, routeKey, order = 'asc') {
     return newResponse;
 }
 
-function newOrder() {
-    switch (orderMethod) {
-        case 'By price': { resultFromApi = orderProductResponse(resultFromApi, 'current_price', 'asc'); } break;
-        case 'By name': { resultFromApi = orderProductResponse(resultFromApi, 'product.name', 'asc'); } break;
-        case 'By unit': { resultFromApi = orderProductResponse(resultFromApi, 'measure', 'asc'); } break;
+function sortProductsDOM(containerSelector, criteria, order = 'asc') {
+    const container = document.querySelector(containerSelector);
+    if (!container) { 
+        return; 
     }
 
-    // Select the shop container:
-    const productsContainer = document.getElementById('products-container');
-    productsContainer.innerHTML = '';
+    // Convertimos los nodos hijos en un array para poder usar .sort()
+    const products = Array.from(container.children);
 
-    // Variables:
-    let dataLength = resultFromApi.data.inventories.length // Elements
-    let data = resultFromApi.data.inventories;
+    products.sort((a, b) => {
+        let valueA, valueB;
 
-    
-    let foundFirstProduct = false;
-
-    // Obtener la ID seleccionada por el usuario
-    const selectedProductId = localStorage.getItem('product-selected');
-
-    // Obtener el inventario desde el servidor
-    const inventories = resultFromApi.data.inventories;
-
-    // Reordenar el inventario: el producto seleccionado primero
-    let newInventoryOrder = [];
-    if (selectedProductId) {
-        // Buscar el producto seleccionado
-        const selectedProduct = inventories.find(item => String(item.product?.id) === String(selectedProductId));
-        // Agregar el producto seleccionado al inicio si existe
-        if (selectedProduct) {
-            newInventoryOrder.push(selectedProduct);
+        // Extraemos el valor según el criterio seleccionado
+        if (criteria === 'name') {
+            valueA = a.querySelector('.name')?.textContent.trim() || '';
+            valueB = b.querySelector('.name')?.textContent.trim() || '';
+            return order === 'asc' ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
         }
-        // Agregar el resto de productos (excepto el seleccionado)
-        newInventoryOrder = newInventoryOrder.concat(
-            inventories.filter(item => String(item.product?.id) !== String(selectedProductId))
-        );
 
-        foundFirstProduct = true;
-    } else {
-        // Si no hay producto seleccionado, mantener el orden original
-        newInventoryOrder = inventories;
-    }
-
-    // Ensure local data references the reordered array so subsequent code uses the correct order
-    data = newInventoryOrder;
-    dataLength = data.length;
-
-    // Define the correct unit:
-    function set_unit(unit, index) {
-        // Check if is measure:
-        if (unit === 'not_applicable') {
-            if (parseInt(data[index]?.measure) === 1) { return `${parseInt(data[index]?.measure)} Unidad.` }
-            else { return `${parseInt(data[index]?.measure)} Unidades.` }
+        if (criteria === 'price') {
+            // Limpiamos el texto removiendo "Ref." y cambiando la coma decimal por punto para operarlo como número
+            const rawA = a.querySelector('.price')?.textContent.replace('Ref.', '').replace(/\s/g, '').replace(',', '.') || '0';
+            const rawB = b.querySelector('.price')?.textContent.replace('Ref.', '').replace(/\s/g, '').replace(',', '.') || '0';
+            valueA = parseFloat(rawA);
+            valueB = parseFloat(rawB);
         }
-        else { return `${data[index]?.measure.toString().replace(/\./g, ',')} ${unit.charAt(0).toUpperCase() + unit.slice(1)}.`; }
-    }
-    
-    // Check if exists shops that container:
-    if (resultFromApi.data.inventories.length === 0) {
-        // Show message for no inventories:
-        const containerLiContainer = document.createElement('li');
-        containerLiContainer.innerHTML = `<span class="animate error-list">
-                                            <i></i>
-                                            <h4>No hay productos disponibles en esta tienda</h4>
-                                        </span>`;
 
-        // Insert the element:
-        productsContainer.appendChild(containerLiContainer);
-    }
-    else {
-        // Input value for default and preserve previous quantities if any:
-        let inputValue = 0;
-        let iconClass = null;
-
-        // Preserve existing quantities when rebuilding the list (so user edits are not lost by sorting/filtering)
-        const existingQuantities = {};
-        document.querySelectorAll('.product-button').forEach(pb => {
-            const pid = parseInt(pb.id.replace('product-cart-id-',''), 10);
-            const val = parseInt(pb.querySelector('.input-add-cart')?.value, 10);
-            if (!isNaN(pid)) { existingQuantities[pid] = !isNaN(val) ? val : 0; }
-        });
-
-        // Insert the products:
-        for (let x = 0; x < dataLength; x++) {
-            if (data[x].stock >= 1) {
-                const currentProductId = parseInt(data[x].product?.id, 10);
-
-                // Determine input value: prefer previously set value, otherwise if this is the selected product set to 1, else 0
-                if (existingQuantities.hasOwnProperty(currentProductId)) {
-                    inputValue = existingQuantities[currentProductId];
-                } else if (selectedProductId && String(currentProductId) === String(selectedProductId)) {
-                    inputValue = 1;
-                    localStorage.setItem('product-selected-founded', 'found');
-                } else {
-                    inputValue = 0;
-                }
-
-                iconClass = inputValue > 0 ? 'selected' : null;
-
-                // Create the container:
-                const containerLiContainer = document.createElement('li');
-                containerLiContainer.innerHTML = '';
-                apply_class({_element: containerLiContainer, _class: 'set-visibility'});
-                apply_class({_element: containerLiContainer, _class: 'product-container'});
-                
-                const productFallbackUrl = '../../resources/images/error-image.png';
-                const productImageUrl = data[x]?.product?.image ? `${url}storage/${data[x].product.image}` : productFallbackUrl;
-
-                // Create the container:
-                containerLiContainer.innerHTML += `<div class="product-button set-visibility element-entry-visible" id="product-cart-id-${data[x].product?.id}">
-                                                        <div class="product-image">
-                                                            <img src="${productImageUrl}" alt="${data[x].product?.name}" onerror="this.onerror=null; this.src='${productFallbackUrl}';">
-                                                        </div>
-                                                        <div class="product-information">
-                                                            <h4 class="name">${data[x].product?.name}</h4>
-                                                            <span class="separator"></span>
-                                                            <span class="line-text">
-                                                                <h5>Unidad a la venta:</h5>
-                                                                <p>${set_unit(data[x]?.product?.unit, x)}</p>
-                                                            </span>
-                                                            <span class="line-text">
-                                                                <h5>Precio unitario:</h5>
-                                                                <p class="price">${data[x].current_price.toString().replace(/\./g, ',')} Ref.</p>
-                                                            </span>
-                                                            <span class="line-text">
-                                                                <h5>Cantidad disponible:</h5>
-                                                                <p class="stock">${data[x].stock}</p>
-                                                            </span>
-                                                        </div>
-                                                        <div class="product-cart">
-                                                            <i class="${iconClass}"></i>
-                                                            <input class="input-add-cart" type="number" min="0" max="${data[x].stock}" value="${inputValue}" placeholder=". . .">
-                                                        </div>
-                                                    </div>`;
-
-                // Insert the elements:
-                productsContainer.appendChild(containerLiContainer);
-            }
+        if (criteria === 'unit') {
+            valueA = parseInt(a.querySelector('.unit-product')?.textContent.trim() || '0', 10);
+            valueB = parseInt(b.querySelector('.unit-product')?.textContent.trim() || '0', 10);
         }
-            
-        // -----------------------------------------------------------------------
 
-        document.querySelectorAll('li').forEach(container => {
-            // Element name:
-            const shopName = container.querySelector('.name').textContent.trim().toLowerCase() || '';
+        return order === 'asc' ? valueA - valueB : valueB - valueA;
+    });
 
-            // Search it:
-            const searchValue = document.getElementById('input-search').value.trim().toLowerCase();
-            if (shopName.includes(searchValue) || searchValue === '') { container.style.display = 'flex'; }
-            else { container.style.display = 'none'; }
-            
-            // Entry animation:
-            apply_class({_element: container, _class: 'element-not-visible'});
-            apply_class({_element: container, _class: 'element-entry-visible', _method: 'r'});
-
-            // Get all elements showed:
-            const showedElements = Array.from(document.querySelectorAll('.shop-container')).filter(_element => _element.style.display !== 'none');
-
-            // Apply the entry animation to specifics elements:
-            requestAnimationFrame(() => {
-                // Select just the message error:
-                if (showedElements.length === 0) {
-                    // Select and remove the error item:
-                    let errorItem = document.getElementById('not-found-shops');
-                    if (errorItem) { errorItem.remove(); }
-                    
-                    // Create the error item:
-                    const errorElement = document.createElement('div');
-                    errorElement.id = 'not-found-shops';
-                    errorElement.classList.add('error-list', 'animate', 'not-found-shops');
-                    errorElement.innerHTML = `<span class="animate error-list">
-                                                <i></i>
-                                                <h4>No hay productos disponibles en esta tienda</h4>
-                                            </span>`;
-                    
-                    document.getElementById('general-container').appendChild(errorElement);
-                }
-                else {
-                    // Apply the effect:
-                    showedElements.forEach(_element => {
-                        visibility_effect({_element: _element, _container: '#shops-container'})
-                    });
-                }
-            });
-
-            // Create the observer:
-            visibility_effect({});
-        });
-
-        // -----------------------------------------------------------------------
-
-        // Add the functionality to buttons:
-        // events_products('update');
-    }
+    // Movemos los elementos en el DOM uno por uno según el nuevo orden
+    products.forEach(product => {
+        container.appendChild(product);
+    });
 }
