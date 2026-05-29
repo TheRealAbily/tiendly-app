@@ -573,5 +573,4 @@ export function enable_scroll() {
 // Change the URL:
 export function change_url(_url) {
     url = _url
-    console.log(url);
 }

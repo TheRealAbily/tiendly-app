@@ -7,6 +7,10 @@ import { url, apply_class, start_view,
 // Import the functionalities:
 import { events_products } from './events-products.js';
 
+// Order method for shops:
+let orderMethod = 'By price';
+let resultFromApi = '';
+
 // When document is loaded:
 document.addEventListener('DOMContentLoaded', () => {
     // Functions:
@@ -56,7 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     // Show the content, insert the elements, and add the functionality:
-    .then(result => {
+    .then(responseApi => {
+        resultFromApi = responseApi;
+        const result = orderProductResponse(responseApi, 'current_price', 'asc');
+        // const result = orderProductResponse(responseApi, 'measure', 'asc');
+        // const result = orderProductResponse(responseApi, 'shop.name', 'asc');
+
         // Delay:
         setTimeout(() => {
             // Set the values:
@@ -191,6 +200,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // -----------------------------------------------------------------------
 
+            // Remove the loading effect on search input:
+            apply_class({_query: '#filter-button', _class: 'loading-effect', _method: 'r'});
+
+            // -----------------------------------------------------------------------
+
+            // Change the label on filter button:
+            const filterButton = document.getElementById('filter-button');
+            filterButton.innerHTML = `Filtros <i></i>`;
+            filterButton.addEventListener('click', () => {
+                apply_class({_query: '#filter-pause', _class: 'block'});
+                setTimeout(() => { apply_class({_query: '#filter-pause', _class: 'block', _method: 'r'}); }, 650);
+
+                document.getElementById('filter-screen').classList.remove('remove-background');
+                document.getElementById('filters').classList.remove('has-closed');
+                document.getElementById('filter-screen').classList.add('has-background');
+                document.getElementById('filters').classList.add('has-opened');
+            })
+
+            // -----------------------------------------------------------------------
+
+            // Apply the class for fitler buttons:
+            document.querySelectorAll('.filter-button').forEach((button, index) => {
+                button.addEventListener('click', () => {
+                    if (!button.classList.contains('marked')) {
+                        document.querySelectorAll('.filter-button').forEach(otherButton => {
+                            otherButton.classList.remove('marked', 'animate');
+                            otherButton.innerHTML = '';
+                        })
+
+                        apply_class({_element: button, _class: 'animate', _method: 'r'});
+                        void button.offsetHeight;
+                        apply_class({_element: button, _class: 'animate'});
+
+                        apply_class({_element: button, _class: 'marked'});
+                        button.innerHTML = '<i></i>';
+
+                        switch (index) {
+                            case 0: { orderMethod = 'By price'; } break;
+                            case 1: { orderMethod = 'By name'; } break;
+                            case 2: { orderMethod = 'By unit'; } break;
+                        }
+
+                        newOrder();
+                    }
+                })
+            })
+
+            // -----------------------------------------------------------------------
+
+            // Accept the filters:
+            document.getElementById('filter-accept').addEventListener('click', function () {
+                apply_class({_query: '#filter-pause', _class: 'block'});
+                setTimeout(() => { apply_class({_query: '#filter-pause', _class: 'block', _method: 'r'}); }, 650);
+
+                document.getElementById('filter-screen').classList.remove('has-background');
+                document.getElementById('filters').classList.remove('has-opened');
+                document.getElementById('filter-screen').classList.add('remove-background');
+                document.getElementById('filters').classList.add('has-closed');
+            })
+            
+            // -----------------------------------------------------------------------
+            
             // Variable:
             let recentProducts = [];
 
@@ -238,3 +309,175 @@ document.addEventListener('DOMContentLoaded', () => {
         create_notification('error', 'Ha ocurrido un error al conectarse al servidor', 5000, 1000);
     })
 });
+
+// -----------------------------------------------------------------------
+
+function orderProductResponse(response, routeKey, order = 'asc') {
+    // 1. Clonamos el objeto de respuesta para no mutar el original
+    const newResponse = { 
+        ...response,
+        data: {
+            ...response.data,
+            inventories: response.data && Array.isArray(response.data.inventories) ? [...response.data.inventories] : []
+        }
+    };
+
+    const targetArray = newResponse.data.inventories;
+
+    // Si por alguna razón no hay inventarios, retornamos la respuesta intacta
+    if (targetArray.length === 0) {
+        return newResponse;
+    }
+
+    // Función interna para navegar en el árbol de cada inventario (ej: 'shop.name')
+    const getValueOnRoute = (object, route) => {
+        return route.split('.').reduce((obj, key) => { return obj ? obj[key] : undefined; }, object);
+    };
+
+    // 2. Ordenamos el array de inventarios
+    targetArray.sort((a, b) => {
+        let valueA = getValueOnRoute(a, routeKey);
+        let valueB = getValueOnRoute(b, routeKey);
+
+        // Si los valores son strings (como el nombre de la tienda), usamos localeCompare
+        if (typeof valueA === 'string') {
+            return order === 'asc' ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
+        }
+
+        // Si son números o strings numéricos (como measure: "18.23"), los casteamos a Number
+        return order === 'asc' ? Number(valueA) - Number(valueB) : Number(valueB) - Number(valueA);
+    });
+
+    return newResponse;
+}
+
+function newOrder() {
+    switch (orderMethod) {
+        case 'By price': { resultFromApi = orderProductResponse(resultFromApi, 'current_price', 'asc'); } break;
+        case 'By name': { resultFromApi = orderProductResponse(resultFromApi, 'shop.name', 'asc'); } break;
+        case 'By unit': { resultFromApi = orderProductResponse(resultFromApi, 'measure', 'asc'); } break;
+    }
+
+    // Select the shop container:
+    const shopContainer = document.getElementById('shops-container');
+    shopContainer.innerHTML = '';
+
+    // Variables:
+    let dataLength = resultFromApi.data.inventories.length // Elements
+    let data = resultFromApi.data.inventories;
+
+    // Define the correct unit:
+    function set_unit(unit, index) {
+        // Check if is measure:
+        if (unit === 'not_applicable') {
+            if (parseInt(data[index]?.measure) === 1) { return `${parseInt(data[index]?.measure)} Unidad.` }
+            else { return `${parseInt(data[index]?.measure)} Unidades.` }
+        }
+        else { return `${data[index]?.measure.toString().replace(/\./g, ',')} ${unit.charAt(0).toUpperCase() + unit.slice(1)}.`; }
+    }
+    
+    // Check if exists shops that container:
+    if (resultFromApi.data.inventories.length === 0) {
+        // Show message for no inventories:
+        const containerLiContainer = document.createElement('li');
+        containerLiContainer.innerHTML = `<span class="animate error-list">
+                                        <i></i>
+                                        <h4>No hay tiendas que vendan este producto</h4>
+                                    </span>`;
+
+        // Insert the element:
+        shopContainer.appendChild(containerLiContainer);
+    }
+    else {
+        // Insert the shops:
+        for (let x = 0; x < dataLength; x++) {
+            // Create the container:
+            const containerLiContainer = document.createElement('li');
+            containerLiContainer.innerHTML = '';
+            apply_class({_element: containerLiContainer, _class: 'set-visibility'});
+            apply_class({_element: containerLiContainer, _class: 'shop-container'});
+            
+            const shopFallbackUrl = '../../resources/images/error-image.png';
+            const shopImageUrl = data[x]?.shop?.image ? `${url}storage/${data[x].shop.image}` : shopFallbackUrl;
+
+            // Create the container:
+            containerLiContainer.innerHTML += `<div class="shop-button" id="shop-id-${data[x].shop?.id}">
+                                                    <div class="shop-image">
+                                                        <img src="${shopImageUrl}" alt="${data[x].shop?.name}" onerror="this.onerror=null; this.src='${shopFallbackUrl}';">
+                                                    </div>
+                                                    <div class="shop-information">
+                                                        <h4 class="name">${data[x].shop?.name}</h4>
+                                                        <span class="separator"></span>
+                                                        <span class="line-text">
+                                                            <h5>Unidad a la venta:</h5>
+                                                            <p>${set_unit(resultFromApi.data.unit, x)}</p>
+                                                        </span>
+                                                        <span class="line-text">
+                                                            <h5>Precio unitario:</h5>
+                                                            <p>${data[x].current_price.toString().replace(/\./g, ',')} Ref.</p>
+                                                        </span>
+                                                        <span class="line-text">
+                                                            <h5>Cantidad disponible:</h5>
+                                                            <p>${data[x].stock}</p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                `;
+
+            // Insert the elements:
+            shopContainer.appendChild(containerLiContainer);
+        }
+            
+        // -----------------------------------------------------------------------
+
+        document.querySelectorAll('li').forEach(container => {
+            // Element name:
+            const shopName = container.querySelector('.name').textContent.trim().toLowerCase() || '';
+
+            // Search it:
+            const searchValue = document.getElementById('input-search').value.trim().toLowerCase();
+            if (shopName.startsWith(searchValue) || searchValue === '') { container.style.display = 'flex'; }
+            else { container.style.display = 'none'; }
+            
+            // Entry animation:
+            apply_class({_element: container, _class: 'element-not-visible'});
+            apply_class({_element: container, _class: 'element-entry-visible', _method: 'r'});
+
+            // Get all elements showed:
+            const showedElements = Array.from(document.querySelectorAll('.shop-container')).filter(_element => _element.style.display !== 'none');
+
+            // Apply the entry animation to specifics elements:
+            requestAnimationFrame(() => {
+                // Select just the message error:
+                if (showedElements.length === 0) {
+                    // Select and remove the error item:
+                    let errorItem = document.getElementById('not-found-shops');
+                    if (errorItem) { errorItem.remove(); }
+                    
+                    // Create the error item:
+                    const errorElement = document.createElement('div');
+                    errorElement.id = 'not-found-shops';
+                    errorElement.classList.add('error-list', 'animate', 'not-found-shops');
+                    errorElement.innerHTML = `<i class="shops"></i>
+                                                <h4>No se han encontrado<br>tiendas que coincidan</h4>`;
+                    
+                    document.getElementById('general-container').appendChild(errorElement);
+                }
+                else {
+                    // Apply the effect:
+                    showedElements.forEach(_element => {
+                        visibility_effect({_element: _element, _container: '#shops-container'})
+                    });
+                }
+            });
+
+            // Create the observer:
+            visibility_effect({});
+        });
+
+        // -----------------------------------------------------------------------
+
+        // Add the functionality to buttons:
+        events_products('update');
+    }
+}

@@ -26,6 +26,7 @@
             <!-- Styles -->
             <link href="../css/styles.css" rel="stylesheet">
             <link href="../css/shops-container.css" rel="stylesheet">
+            <link href="../css/filter-screen.css" rel="stylesheet">
 
             <!-- JS -->
 
@@ -89,10 +90,17 @@
                             <!-- Line divisor -->
                             <span class="line-separator separator-2 fix set-visibility element-entry-visible short-description"></span>
 
-                            <!-- Input search -->
-                            <div class="input-search-container set-visibility element-entry-visible loading-effect">
-                                <input class="input-search" type="text" placeholder="Buscar tienda" id="input-search" autocomplete="off">
-                                <i></i>
+                            <div id="search-filter-container">
+                                <!-- Input search -->
+                                <div class="input-search-container set-visibility element-entry-visible loading-effect">
+                                    <input class="input-search" type="text" placeholder="Buscar tienda" id="input-search" autocomplete="off">
+                                    <i></i>
+                                </div>
+
+                                <!-- Filter button -->
+                                <div class="set-visibility element-entry-visible loading-effect" id="filter-button">
+                                    <i></i>
+                                </div> 
                             </div>
 
                             <!-- Shops container -->
@@ -114,6 +122,33 @@
                     <div class="screen-block-touchs desactive"></div>
                 </div>
             </main>
+
+            <!---------------------------------------------------------------------------->
+
+            <div id="filter-screen">
+                <div id="filters">
+                    <h3 class="big-subtitle">Filtrar por:</h3>
+                    <div id="filters-container">
+                        <span class="filter">
+                            <h3 class="big-subtitle">Precio:</h3>
+                            <div class="filter-button marked" id="filter-by-price">
+                                <i></i>
+                            </div>
+                        </span>
+                        <span class="filter">
+                            <h3 class="big-subtitle">Nombre:</h3>
+                            <div class="filter-button" id="filter-by-name"></div>
+                        </span>
+                        <span class="filter">
+                            <h3 class="big-subtitle">Medida/Unidad:</h3>
+                            <div class="filter-button" id="filter-by-measure"></div>
+                        </span>
+                    </div>
+                    <button id="filter-accept">Aceptar</button>
+                </div>
+
+                <div id="filter-pause"></div>
+            </div>
 
             <!---------------------------------------------------------------------------->
 
