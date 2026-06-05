@@ -348,17 +348,17 @@ li.error { /* Error message */
 
             /* Category */
             &.category {
-                mask-image: url(../../../resources/icons/category.svg);
+                mask-image: url(../../resources/icons/category.svg);
             }
 
             /* Product */
             &.product {
-                mask-image: url(../../../resources/icons/open-box.svg);
+                mask-image: url(../../resources/icons/open-box.svg);
             }
 
             /* Shop */
             &.shop {
-                mask-image: url(../../../resources/icons/shop.svg);
+                mask-image: url(../../resources/icons/shop.svg);
             }
         }
 

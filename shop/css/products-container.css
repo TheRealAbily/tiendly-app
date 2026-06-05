@@ -333,7 +333,7 @@ ul {
                 background: var(--element-ui-color-1);
 
                 /* Products */
-                mask-image: url('../../../resources/icons/open-box.svg');
+                mask-image: url('../../resources/icons/open-box.svg');
             }
 
             /* Text */
