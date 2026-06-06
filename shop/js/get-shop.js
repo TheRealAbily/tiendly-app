@@ -342,12 +342,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Set the cart items:
             if (result.data.cart?.status === 'pending') {
-                result.data.cart.cart_items.forEach(_product => {
+                const cartItems = Array.isArray(result.data.cart?.cart_items) ? result.data.cart.cart_items : [];
+                cartItems.forEach(_product => {
                     const cartSection = document.querySelector(`#product-cart-id-${_product.product_id}`);
+                    if (!cartSection) return;
                     
                     // Restore the cart saved:
-                    cartSection.querySelector('.product-cart').querySelector('i').classList.add('selected'); // Icon
-                    cartSection.querySelector('.input-add-cart').value = _product.quantity; // Quantity
+                    const icon = cartSection.querySelector('.product-cart i');
+                    if (icon) icon.classList.add('selected'); // Icon
+                    const qtyInput = cartSection.querySelector('.input-add-cart');
+                    if (qtyInput) qtyInput.value = _product.quantity; // Quantity
                 });
 
                 // Edit the button:

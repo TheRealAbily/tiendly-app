@@ -3,7 +3,7 @@ import { url, check_login } from '../../general/js/functions/general-functions.j
 
 // Fetch to server for login:
 export function fetch_login (data) {
-    return fetch (url + 'api/auth/login', {
+    return fetch (url + 'api/auth/loginAll', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
