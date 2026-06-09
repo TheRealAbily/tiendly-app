@@ -186,6 +186,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             break;
                         }
 
+                        case 405: {
+                            textError.textContent = 'Usuario baneado';
+                            repeat_animation(emailInput.closest('.input-container'), 'error');
+                            repeat_animation(passwordInput.closest('.input-container'), 'error');
+                            break;
+                        }
+
                         default: { textError.textContent = 'Ha ocurrido un error en el servidor'; break; }
                     }
 
