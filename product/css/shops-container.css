@@ -387,3 +387,22 @@ ul {
         }
     }
 }
+
+#is-variable-container {
+    margin-bottom: 2rem;
+
+    width: 100%;
+    min-height: 1rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & h3 {
+        color: rgb(200, 0, 0);
+
+        text-align: center;
+
+        opacity: 0.6;
+    }
+}
