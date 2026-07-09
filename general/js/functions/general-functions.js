@@ -37,7 +37,7 @@ export function reset_vars() {
 }
 
 // URL from the API Tiendly:
-export let url = 'http://127.0.0.1:8000/';
+export let url = 'https://ministeriosja.com/api-tiendly/';
 
 // Root folder:
 export const mainPath = window.location.origin;
