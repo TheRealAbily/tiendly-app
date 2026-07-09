@@ -53,7 +53,7 @@ ul#container {
 
     display: flex;
 
-    justify-content: start;
+    justify-content: space-around;
     align-items: start;
     
     flex: 1;

@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Check if the unit is var:
             const message = document.getElementById('is-variable-container');
-            if (responseApi.data.is_variable) { message.querySelector('h3').innerHTML = 'El precio de este producto puede<br>variar según el peso/conteido.'; }
+            if (parseInt(responseApi.data.is_variable)) { message.querySelector('h3').innerHTML = 'El precio de este producto puede<br>variar según el peso/conteido.'; }
             else { message.remove(); }
             
             // -----------------------------------------------------------------------
