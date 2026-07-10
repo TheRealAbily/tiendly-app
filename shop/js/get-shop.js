@@ -362,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 apply_class({_element: editCartButton, _class: 'is-edit'});
 
                 // Set the total items and price (on Ref.):
-                document.getElementById('total-amount-items').textContent = Array.from(result.data.cart.cart_items).reduce((acc, _product) => acc + _product.quantity, 0);
+                document.getElementById('total-amount-items').textContent = Array.from(result.data.cart.cart_items).reduce((acc, _product) => acc + parseInt(_product.quantity), 0);
                 document.getElementById('total-price-items').textContent = parseFloat(result.data.cart.total_price).toFixed(2).replace(/\./g, ',') + ' Ref.';
                 document.getElementById('total-price-bs-items').textContent = format_price((parseFloat(result.data.cart.total_price.replace(',', '.')) * dollar_price({_mode: 'return'})).toFixed(2).replace(/\./g, ',')) + ' Bs.';
                 
